@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dsphoebe/wheel.0.0/issues"
   },
-  "homepage": "https://github.com/dsphoebe/wheel.0.0#readme"
+  "homepage": "https://github.com/dsphoebe/wheel.0.0#readme",
+  "dependencies": {
+    "vue": "^2.6.9"
+  }
 }
