@@ -1,31 +1,15 @@
 <template>
-  <button class="g-button"></button>
+  <button class="w-button"><slot></slot></button>
 </template>
+
 <script>
 export default {
-  
+  name: 'w-button'
 }
 </script>
 
 <style lang="scss">
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    --button-height: 32px;
-    --font-size: 14px;
-    --button-bg: white;
-    --button-active-bg: #eee;
-    --border-radius: 4px;
-    --color: #333;
-    --border-color: #999;
-    --border-color-hover: #666;
-  }
-
-  .g-button {
+  .w-button {
     font-size: var(--font-size);
     height: var(--button-height);
     padding: 0 1em;
@@ -41,8 +25,5 @@ export default {
     &:focus {
       outline: none;
     }
-  }
-  body {
-    font-size: var(--font-size);
   }
 </style>
