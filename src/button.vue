@@ -1,6 +1,11 @@
 <template>
-  <button class="w-button" :class="{[`icon-${iconPosition}`]: true}">
-    <w-icon v-if="icon" :name="icon"></w-icon>
+  <button
+    class="w-button"
+    :class="{[`icon-${iconPosition}`]: true}"
+    @click="$emit('click')"
+  >
+    <w-icon v-if="icon && !loading" :name="icon" class="icon"></w-icon>
+    <w-icon v-if="loading" name="loading" class="icon loading"></w-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -16,6 +21,10 @@ export default {
   },
   props: {
     icon: {},
+    loading: {
+      type: Boolean,
+      default: false
+    },
     iconPosition: {
       type: String,
       default: 'left',
@@ -28,6 +37,10 @@ export default {
 </script>
 
 <style lang="scss">
+  @keyframes spin {
+    0% {transform: rotate(0);}
+    100% {transform: rotate(360deg);}
+  }
   .w-button {
     color: var(--color);
     font-size: var(--font-size);
@@ -49,15 +62,18 @@ export default {
     &:focus {
       outline: none;
     }
-    > .w-icon {
+    > .icon {
       order: 1;
       margin: 0 .3em 0 0;
+      &.loading {
+        animation: spin .8s linear infinite;
+      }
     }
     > .content {
       order: 2;
     }
     &.icon-right {
-      > .w-icon {
+      > .icon {
         order: 2;
         margin: 0 0 0 .3em;
       }
