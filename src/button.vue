@@ -1,29 +1,60 @@
 <template>
-  <button class="w-button"><slot></slot></button>
+  <button class="w-button" :class="{[`icon-${iconPosition}`]: true}">
+    <w-icon v-if="icon" :name="icon"></w-icon>
+    <div class="content">
+      <slot></slot>
+    </div>
+  </button>
 </template>
 
 <script>
+import Icon from './icon'
 export default {
-  name: 'w-button'
+  name: 'w-button',
+  components: {
+    'w-icon': Icon
+  },
+  props: ['icon', 'iconPosition']
 }
 </script>
 
 <style lang="scss">
   .w-button {
+    color: var(--color);
     font-size: var(--font-size);
     height: var(--button-height);
     padding: 0 1em;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     background: var(--button-bg);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
     &:hover {
       border-color: var(--border-color-hover);
     }
     &:active {
-      background-color: var(--button-bg-color-hover)
+      background-color: var(--button-active-bg)
     }
     &:focus {
       outline: none;
+    }
+    > .w-icon {
+      order: 1;
+      margin-right: .3em;
+    }
+    > .content {
+      order: 2;
+    }
+    &.icon-right {
+      > .w-icon {
+        order: 2;
+        margin-left: .3em;
+      }
+      > .content {
+        order: 1;
+      }
     }
   }
 </style>
