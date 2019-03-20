@@ -14,7 +14,16 @@ export default {
   components: {
     'w-icon': Icon
   },
-  props: ['icon', 'iconPosition']
+  props: {
+    icon: {},
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator (value) {
+        return value === 'left' || value === 'right'
+      }
+    }
+  }
 }
 </script>
 
@@ -42,7 +51,7 @@ export default {
     }
     > .w-icon {
       order: 1;
-      margin-right: .3em;
+      margin: 0 .3em 0 0;
     }
     > .content {
       order: 2;
@@ -50,7 +59,7 @@ export default {
     &.icon-right {
       > .w-icon {
         order: 2;
-        margin-left: .3em;
+        margin: 0 0 0 .3em;
       }
       > .content {
         order: 1;
